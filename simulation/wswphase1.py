@@ -118,9 +118,9 @@ class Simulator:
       #print obj.x, obj.y
       #self.screen.blit(pygame.transform.rotate(self.prey, obj.direct), (obj.x,obj.y))
       self.screen.blit(self.prey, (obj.x-14,obj.y-14))
-      pygame.draw.circle(self.screen, (0,255,255), [obj.x, obj.y], Prey.senserange, 1)
+      # pygame.draw.circle(self.screen, (0,255,255), [obj.x, obj.y], Prey.senserange, 1)
 
-      pygame.draw.circle(self.screen, (0,0,0), [obj.target.x, obj.target.y], 10, 4)
+      # pygame.draw.circle(self.screen, (0,0,0), [obj.target.x, obj.target.y], 10, 4)
 
     # if obj.name == 'hawk':
     #   self.screen.blit(self.hawk, (obj.x,obj.y))
@@ -130,7 +130,7 @@ class Simulator:
     #   pygame.draw.circle(self.screen, (255,0,0), [obj.x+20, obj.y+20], obj.senserange, 1)
     if obj.name == 'snake':
       self.screen.blit(self.snake, (obj.x,obj.y))
-      pygame.draw.circle(self.screen, (255,0,0), [obj.x+20, obj.y+20], obj.senserange, 1)
+      # pygame.draw.circle(self.screen, (255,0,0), [obj.x+20, obj.y+20], obj.senserange, 1)
 
 
     # if obj.name == 'bush':
