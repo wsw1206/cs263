@@ -22,12 +22,12 @@ class Simulator:
     for i in range(10):
       self.env.prey.append(Prey())
 
-    for i in range(3):
+    for i in range(5):
       self.env.snake.append(Predator('snake'))
-    for i in range(3):
-      self.env.hawk.append(Predator('hawk'))
-    for i in range(3):
-      self.env.fox.append(Predator('fox'))
+    # for i in range(3):
+    #   self.env.hawk.append(Predator('hawk'))
+    # for i in range(3):
+    #   self.env.fox.append(Predator('fox'))
 
     # fin = open('map.csv', 'rb')
     # lines = csv.reader(fin)
@@ -41,16 +41,16 @@ class Simulator:
     #     self.env.bush.append(Shelter('hole', int(line[1]), int(line[2])))
     #   if line[0]=='3':
     #     self.env.bush.append(Shelter('tree', int(line[1]), int(line[2])))
-    for i in range(15):
-      self.env.bush.append(Shelter('bush'))
-      #spamwriter.writerow(['1', str(self.env.bush[-1].x), str(self.env.bush[-1].y)])
+    # for i in range(15):
+    #   self.env.bush.append(Shelter('bush'))
+    #   #spamwriter.writerow(['1', str(self.env.bush[-1].x), str(self.env.bush[-1].y)])
 
-    for i in range(15):
-      self.env.hole.append(Shelter('hole'))
-      #spamwriter.writerow(['2', str(self.env.hole[-1].x), str(self.env.hole[-1].y)])
+    # for i in range(15):
+    #   self.env.hole.append(Shelter('hole'))
+    #   #spamwriter.writerow(['2', str(self.env.hole[-1].x), str(self.env.hole[-1].y)])
 
-    for i in range(15):
-      self.env.tree.append(Shelter('tree'))
+    # for i in range(15):
+    #   self.env.tree.append(Shelter('tree'))
       #spamwriter.writerow(['3', str(self.env.tree[-1].x), str(self.env.tree[-1].y)])
 
     # fout.close()
@@ -86,26 +86,26 @@ class Simulator:
     # pictures resources for Yao-Jen
     self.prey = pygame.image.load("../resources/prey.png")
 
-    self.hawk = pygame.image.load("../resources/hawk.gif")
-    self.fox  = pygame.image.load("../resources/fox.png")
+    # self.hawk = pygame.image.load("../resources/hawk.gif")
+    # self.fox  = pygame.image.load("../resources/fox.png")
     self.snake = pygame.image.load("../resources/snake.png")
 
-    self.bush =  pygame.image.load("../resources/bush.png")
-    self.hole =  pygame.image.load("../resources/hole.png")
-    self.tree =  pygame.image.load("../resources/tree.png")
+    # self.bush =  pygame.image.load("../resources/bush.png")
+    # self.hole =  pygame.image.load("../resources/hole.png")
+    # self.tree =  pygame.image.load("../resources/tree.png")
 
     self.food = pygame.image.load("../resources/nut.png")
 
 
     # modify pictures to appropriate sizes
     self.prey          = pygame.transform.scale(self.prey, (28,28))
-    self.hawk          = pygame.transform.scale(self.hawk, (40,40))
-    self.fox           = pygame.transform.scale(self.fox, (40,40))
+    # self.hawk          = pygame.transform.scale(self.hawk, (40,40))
+    # self.fox           = pygame.transform.scale(self.fox, (40,40))
     self.snake         = pygame.transform.scale(self.snake, (40,40))
 
-    self.bush          = pygame.transform.scale(self.bush, (55,55))
-    self.hole          = pygame.transform.scale(self.hole, (30,20))
-    self.tree          = pygame.transform.scale(self.tree, (55,55))
+    # self.bush          = pygame.transform.scale(self.bush, (55,55))
+    # self.hole          = pygame.transform.scale(self.hole, (30,20))
+    # self.tree          = pygame.transform.scale(self.tree, (55,55))
 
     self.bg            = pygame.transform.scale(self.bg, (self.screenWidth, self.screenHeight))
     self.food          = pygame.transform.scale(self.food, (20,20))
@@ -118,27 +118,27 @@ class Simulator:
       #print obj.x, obj.y
       #self.screen.blit(pygame.transform.rotate(self.prey, obj.direct), (obj.x,obj.y))
       self.screen.blit(self.prey, (obj.x-14,obj.y-14))
-      pygame.draw.circle(self.screen, (0,255,255), [obj.x, obj.y], Prey.senserange, 1)
+      # pygame.draw.circle(self.screen, (0,255,255), [obj.x, obj.y], Prey.senserange, 1)
 
-      pygame.draw.circle(self.screen, (0,0,0), [obj.target.x, obj.target.y], 10, 4)
+      # pygame.draw.circle(self.screen, (0,0,0), [obj.target.x, obj.target.y], 10, 4)
 
-    if obj.name == 'hawk':
-      self.screen.blit(self.hawk, (obj.x,obj.y))
-      pygame.draw.circle(self.screen, (255,0,0), [obj.x+20, obj.y+20], obj.senserange, 1)
-    if obj.name == 'fox':
-      self.screen.blit(self.fox, (obj.x,obj.y))
-      pygame.draw.circle(self.screen, (255,0,0), [obj.x+20, obj.y+20], obj.senserange, 1)
+    # if obj.name == 'hawk':
+    #   self.screen.blit(self.hawk, (obj.x,obj.y))
+    #   pygame.draw.circle(self.screen, (255,0,0), [obj.x+20, obj.y+20], obj.senserange, 1)
+    # if obj.name == 'fox':
+    #   self.screen.blit(self.fox, (obj.x,obj.y))
+    #   pygame.draw.circle(self.screen, (255,0,0), [obj.x+20, obj.y+20], obj.senserange, 1)
     if obj.name == 'snake':
       self.screen.blit(self.snake, (obj.x,obj.y))
-      pygame.draw.circle(self.screen, (255,0,0), [obj.x+20, obj.y+20], obj.senserange, 1)
+      # pygame.draw.circle(self.screen, (255,0,0), [obj.x+20, obj.y+20], obj.senserange, 1)
 
 
-    if obj.name == 'bush':
-      self.screen.blit(self.bush, (obj.x-27,obj.y-27))
-    if obj.name == 'hole':
-      self.screen.blit(self.hole, (obj.x-15,obj.y-10))
-    if obj.name == 'tree':
-      self.screen.blit(self.tree, (obj.x-27,obj.y-27))
+    # if obj.name == 'bush':
+    #   self.screen.blit(self.bush, (obj.x-27,obj.y-27))
+    # if obj.name == 'hole':
+    #   self.screen.blit(self.hole, (obj.x-15,obj.y-10))
+    # if obj.name == 'tree':
+    #   self.screen.blit(self.tree, (obj.x-27,obj.y-27))
       #pygame.draw.circle(self.screen, (255,0,0), [obj.x, obj.y], 5, 1)
 
     if obj.name == 'food':
@@ -148,8 +148,14 @@ class Simulator:
     #self.env.update()
     while len(self.env.food) <= 60:
       self.env.add('food')
+
+    while len(self.env.prey) <= 10:
+      self.env.prey.append(Prey())
+
+
     for prey in self.env.prey:
       prey.tick(self.env)
+      
 
     for predator in (self.env.hawk+self.env.fox+self.env.snake):
       predator.tick(self.env)
