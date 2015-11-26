@@ -36,7 +36,7 @@ class Prey(Object):
 
 	knowsnake = 0
 	
-	senserange = 80
+	senserange = 20
 	distinct = 10
 
 	#actions = ['up', 'down', 'left','right', 'stroll', 'eat']
