@@ -149,8 +149,8 @@ class Simulator:
     while len(self.env.food) <= 60:
       self.env.add('food')
 
-    while len(self.env.prey) <= 10:
-      self.env.prey.append(Prey())
+    # while len(self.env.prey) <= 10:
+    #   self.env.prey.append(Prey())
 
 
     for prey in self.env.prey:
