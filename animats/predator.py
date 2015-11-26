@@ -88,7 +88,7 @@ class Predator(Object):
 		return actions[random.choice(list)]
 
 	def act(self, action, env):
-		self.energy -= 2
+		self.energy -= 3
 		if self.energy >= 70:
 			env.snake.append(Predator('snake'))
 		if self.energy <= 0:
@@ -144,6 +144,18 @@ class Predator(Object):
 			# learning
 		#else :
 			#print 'Eat False'
+		prey2 = env.find('prey2', (self.x, self.y), Predator.senserange)
+		
+		if prey2!=None:
+
+			if self.name == 'snake':
+				
+				env.prey2.remove(prey2)
+			elif random.random()>0.5:
+				
+				env.prey2.remove(prey2)
+			else:
+				print 'half escape'
 
 
 

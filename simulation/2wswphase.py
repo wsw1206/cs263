@@ -20,14 +20,18 @@ class Simulator:
     self.env = Environment()
     #self.animat = []
     ########
-    for i in range(10):
+    for i in range(50):
       self.env.prey.append(Prey())
 
-    for i in range(10):
+    for i in range(50):
       self.env.prey2.append(Prey2())
 
     for i in range(20):
       self.env.snake.append(Predator('snake'))
+
+    for i in range(500):
+      self.env.add('food')
+      
     # for i in range(3):
     #   self.env.hawk.append(Predator('hawk'))
     # for i in range(3):
@@ -158,8 +162,8 @@ class Simulator:
 
   def update(self):
     #self.env.update()
-    if len(self.env.food) <= 60:
-      for i in range(3):
+    if len(self.env.food) <= 500:
+      for i in range(10):
         self.env.add('food')
 
     # while len(self.env.prey) <= 10:
