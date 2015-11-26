@@ -74,10 +74,21 @@ class Predator(Object):
 					list += [2]*5
 				if prey.x  > self.x:
 					list += [3]*5
+
+			prey2 = env.find('prey2', (self.x, self.y), diag)
+			if prey2 != None and self.name not in prey2.safe:
+				if prey2.y  < self.y:
+					list += [0]*5
+				if prey2.y  > self.y:
+					list += [1]*5
+				if prey2.x  < self.x:
+					list += [2]*5
+				if prey2.x  > self.x:
+					list += [3]*5
 		return actions[random.choice(list)]
 
 	def act(self, action, env):
-		self.energy -= 0.7
+		self.energy -= 2
 		if self.energy >= 70:
 			env.snake.append(Predator('snake'))
 		if self.energy <= 0:
@@ -133,6 +144,7 @@ class Predator(Object):
 			# learning
 		#else :
 			#print 'Eat False'
+
 
 
 

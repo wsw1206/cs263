@@ -45,6 +45,8 @@ class Environment:
     self.hole = []
     self.tree = []
 
+    self.prey2 = []
+
   def add(self, type, x=0, y=0):
   	if type == 'food':
   		newfood = Food(x, y)
@@ -61,6 +63,11 @@ class Environment:
     if obj.name == 'prey':
       print 'remove prey'
       self.prey.remove(obj)
+    if obj.name == 'prey2':
+      print 'remove prey2'
+      self.prey2.remove(obj)
+
+
     #else:
   		#print 'dont have'
   		
@@ -75,6 +82,8 @@ class Environment:
       list = self.bush
     elif type == 'predator':
       list = self.hawk+self.fox+self.snake
+    elif type == 'prey2':
+      list = self.prey2
     
     target = None
     pos = None

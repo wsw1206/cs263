@@ -32,7 +32,7 @@ import time
 	# table = zeros((2**numStates,numActions));
 	# also called "self.q" here
 
-class Prey(Object):
+class Prey2(Object):
 
 	knowsnake = 0
 	
@@ -43,8 +43,8 @@ class Prey(Object):
 	actions = ['up', 'down', 'left', 'right', 'eat', 'stay']
 
 	def __init__(self, gen = 'AA', x=0, y=0 , file='qlearn.txt'):
-		Object.__init__(self, 'prey', x, y)
-		self.qlearn = QLearn(Prey.actions)
+		Object.__init__(self, 'prey2', x, y)
+		self.qlearn = QLearn(Prey2.actions)
 		#self.origin = (self.x, self.y)
 		self.step = 4
 		self.gen = gen
@@ -101,11 +101,11 @@ class Prey(Object):
 		self.energy -= 1
 
 		if self.energy >= 70:
-			env.prey.append(Prey())
+			env.prey2.append(Prey2())
 			
 
 		if self.energy <= 0:
-			env.prey.remove(self)
+			env.prey2.remove(self)
 			print 'die from food'
 		step = self.step
 		#if state == 6:
@@ -162,20 +162,20 @@ class Prey(Object):
 	def getState(self, env):
 		err = self.step-1
 		# check existence of predator 
-		hawks = env.findall('hawk', (self.x, self.y), Prey.senserange)
-		foxes = env.findall('fox', (self.x, self.y), Prey.senserange)
-		snakes = env.findall('snake', (self.x, self.y), Prey.senserange)
+		hawks = env.findall('hawk', (self.x, self.y), Prey2.senserange)
+		foxes = env.findall('fox', (self.x, self.y), Prey2.senserange)
+		snakes = env.findall('snake', (self.x, self.y), Prey2.senserange)
 
 		predators = hawks+foxes
 		type = ['hawk']*min(1,len(hawks)) + ['fox']*min(1,len(foxes))
 
-		if Prey.knowsnake > random.random():
+		if Prey2.knowsnake > random.random():
 			predators += snakes
 			type += ['snake']*min(1,len(snakes))
 
 		if snakes != []:
-			Prey.knowsnake += 0.001
-			Prey.knowsnake = min(1.5, Prey.knowsnake)
+			Prey2.knowsnake += 0.001
+			Prey2.knowsnake = min(1.5, Prey2.knowsnake)
 		
 		if predators != []:
 			self.escape = 1
@@ -186,8 +186,8 @@ class Prey(Object):
 				y += predator.y
 			x /= len(predators)
 			y /= len(predators)
-			nearest = env.find('predator', (self.x, self.y), Prey.senserange)
-			shelter = env.findshelter(type, (self.x, self.y), (x,y), Prey.senserange)
+			nearest = env.find('predator', (self.x, self.y), Prey2.senserange)
+			shelter = env.findshelter(type, (self.x, self.y), (x,y), Prey2.senserange)
 			if shelter!=None:
 				self.target = shelter
 	
@@ -203,33 +203,33 @@ class Prey(Object):
 					elif y > height:
 						x, y = y-height, height+x
 					elif y <= height/2:
-						x, y = 0, y+Prey.senserange
+						x, y = 0, y+Prey2.senserange
 					else:
-						x, y = 0, y-Prey.senserange
+						x, y = 0, y-Prey2.senserange
 				elif x > width:
 					if y < 0:
 						x, y = -y, x-width
 					elif y > height:
 						x, y = width+height-y, width+height-x
 					elif y <= height/2:
-						x, y = width, y+Prey.senserange
+						x, y = width, y+Prey2.senserange
 					else:
-						x, y = width, y-Prey.senserange
+						x, y = width, y-Prey2.senserange
 				elif x < width/2:
 					if y < 0:
-						x, y = x+Prey.senserange, 0
+						x, y = x+Prey2.senserange, 0
 					elif y > height:
-						x, y = x+Prey.senserange, height
+						x, y = x+Prey2.senserange, height
 				else:
 					if y < 0:
-						x, y = x-Prey.senserange, 0
+						x, y = x-Prey2.senserange, 0
 					elif y > height:
-						x, y = x-Prey.senserange, height
+						x, y = x-Prey2.senserange, height
 				
 				self.target = Object(x, y)
 
 		else:
-			food = env.findall('food', (self.x, self.y), Prey.senserange)
+			food = env.findall('food', (self.x, self.y), Prey2.senserange)
 			if len(food)==0:
 				food = None
 			elif self.target not in food:
@@ -352,7 +352,7 @@ class Prey(Object):
 	def eat(self, state, env):
 		if state==5:
 			# print 'eating'
-			food = env.find('food', (self.x, self.y), Prey.senserange)
+			food = env.find('food', (self.x, self.y), Prey2.senserange)
 			if food!=None:
 				self.energy += 15
 				self.energy = min(self.energy, 100)
