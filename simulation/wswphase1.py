@@ -146,8 +146,9 @@ class Simulator:
 
   def update(self):
     #self.env.update()
-    while len(self.env.food) <= 60:
-      self.env.add('food')
+    if len(self.env.food) <= 60:
+      for i in range(3):
+        self.env.add('food')
 
     # while len(self.env.prey) <= 10:
     #   self.env.prey.append(Prey())
