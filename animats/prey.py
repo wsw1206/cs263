@@ -68,7 +68,8 @@ class Prey(Object):
 		self.fd = diag
 		self.hawkxy = []
 		self.hd = diag
-		self.energy = 70
+		self.energy = 100
+		self.life = 20
 
 		
 	
@@ -98,15 +99,20 @@ class Prey(Object):
 		self.escape = 0
 
 	def act(self, state, action, env):
-		self.energy -= 0.3
-
-		if self.energy >= 70:
+		self.energy -= 7
+		self.life -= 1
+		if self.life<=0:
+			env.prey.remove(self)
+			print 'die age'
+			return
+		if self.energy >= 70 and random.random()> len(env.prey)/1000:
 			env.prey.append(Prey())
 			
 
 		if self.energy <= 0:
 			env.prey.remove(self)
 			print 'die from food'
+			return
 		step = self.step
 		#if state == 6:
 		#	step = Prey.foodrange

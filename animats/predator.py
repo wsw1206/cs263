@@ -15,7 +15,8 @@ class Predator(Object):
 		self.step = 8
 		#print self.x, self.y
 		self.stroll = [random.choice(['up', 'down', 'left', 'right'])]
-		self.energy = 70
+		self.energy = 100
+		self.life = 50
 
 	def tick(self, env):
 		params = self.sense(env)
@@ -77,12 +78,17 @@ class Predator(Object):
 		return actions[random.choice(list)]
 
 	def act(self, action, env):
-		self.energy -= 0.7
-		if self.energy >= 70:
+		self.energy -= 10
+		self.life -= 1
+		if self.energy >= 70 and random.random() > len(env.snake)/1000:
 			env.snake.append(Predator('snake'))
+		if self.life <=0:
+			env.snake.remove(self)
+			return
 		if self.energy <= 0:
 			env.snake.remove(self)
 			print 'snake die from food'
+			return
 		step = self.step
 		#if state == 6:
 		#	step = Prey.foodrange
@@ -123,11 +129,7 @@ class Predator(Object):
 			if self.name == 'snake':
 				self.energy += 15
 				env.prey.remove(prey)
-			elif random.random()>0.5:
-				self.energy += 15
-				env.prey.remove(prey)
-			else:
-				print 'half escape'
+			
 			# env.remove(prey)
 			
 			# learning
